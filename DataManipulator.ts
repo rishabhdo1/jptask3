@@ -3,20 +3,11 @@ import { ServerRespond } from './DataStreamer';
 export interface Row {
       price_abc: number, 
       price_def: number,
-      ratio: number,
-      timeStamp: Date,
-      upper_boun: number,
-      lower_bound: number,
-      trigger_aler: number | undefined,
+    
 }
 
 
-export class DataManupulator{
-  static generateRow(serverRespond: ServerRespond[]): Row {
-    const priceABC = (serverRespond[0].top_ask.price + serverRespond[0].top_bid.price)/2;
-    const priceDEF = (serverRespond[1].top_ask.price + serverRespond[1].top_bid.price)/2;
-    const ratio = priceABC/priceDEF;
-    const upperBound = 1 + 0.05;
+export 
     const lowerBound = 1 - 0.05;
     return
     {
@@ -25,11 +16,4 @@ export class DataManupulator{
       ratio,
       timestamp: serverRespond[0].timestamp>serverRespond[1].timestamp?
         serverRespond[0].timestamp : serverRespond[1].timestamp,
-      upper_bound: upperbound,
-      lower_bound: lowerBound,
-      trigger_alert; (ratio > upperBound || ratio < lowerBound ? ratio : undefined,
-
-      ) ;
-    }
-  }
-}
+    
